@@ -1,0 +1,491 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Christmas Card Builder</title>
+<meta name="description" content="Kezzapp has lots of fun Facebook Apps for social media" />
+<meta name="keywords" content="Facebook Apps, Social Media Apps" />
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+<meta name="apple-mobile-web-app-status-bar-style" content="grey" /> 
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" /> 
+<!--<meta property="og:title" content="Which Friend Likes You The Most?"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="http://www.kezzapp.com/images/most_likes_app_small.png"/>
+<meta property="og:description" content="Find out which friend likes your status updates the most." />-->
+<link rel="shortcut icon" href="" /> 
+<link rel="bookmark icon" href="" /> 
+<link href="../css/main.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+        #overlay{ background-color:Black; opacity:0.70; -moz-opacity: 0.70; filter: alpha(opacity=70); position:fixed; top:0px; bottom:0px; left:0px; right:0px; z-index:1000;}
+        #overlayContent { display:none; top:250px; width:480px; height:270px; margin-left: auto; margin-right: auto; position: relative; background-color:#fff; color:#7F7F7F; padding:20px; border:2px solid #ccc;
+            -moz-border-radius: 5px; -webkit-border-radius:5px; -khtml-border-radius:5px; -moz-box-shadow: 0 1px 5px #333; -webkit-box-shadow: 0 1px 5px #333; z-index:1001; background-color: #e5e5e5;}
+        a.closeOverlay{ position: absolute; top: -14px; left: 508px; height: 26px; width: 26px; background:transparent url(../images/close.png) repeat top left; cursor:pointer;}
+        #googleAd1 { width: 468px; height: 60px; color: Blue; position: relative; top:10px; left:27px; }
+        #fbLikes { position: absolute; height: 50px; width: 100px; top: 205px; left: 200px; }
+        #skip { position: absolute; height: 30px; width: 100px; top: 267px; left: 212px; }
+        #shareModal { position: absolute; top: 137px; left: 144px; width: 220px; height: 63px; }
+        div.results img { position: relative; left: 69px !important; }
+        #selectImage li { outline: 2px solid grey; width: 100px; list-style-type: none; height: 100px; margin-bottom: 20px; background-color: blue; position: relative; float: left; margin-right: 20px; }
+        .selected { outline: 5px solid red; }
+        /* preview image */
+        #previewImage { position: relative; background-image: url(images/cards/image1.png); width: 615px; height: 410px; }
+        #previewTitle { position: absolute; left: 315px; top:20px; }
+        #previewMessage { position: absolute; left: 315px; top:100px; }
+        #previewSignature { position: absolute; left: 315px; top:300px; }
+        /* image thumbs */
+        #image1 { background-image: url(images/cards/thumb1.png); width: 100px; height: 100px; }
+        #image2 { background-image: url(images/cards/thumb2.png); width: 100px; height: 100px; }
+        #image3 { background-image: url(images/cards/thumb3.png); width: 100px; height: 100px; }
+        #image4 { background-image: url(images/cards/thumb4.png); width: 100px; height: 100px; }
+        /* set up text options rows and columns */
+        #col1 { float: left; margin-right:10px; width: 240px; height:120px; }
+        #col2 { float: left; margin-right:10px; width: 50px; height:120px; }
+        #col3 { float: left; margin-right:10px; width: 60px; height:120px; }
+        #col3 input { width: 50px; }
+        #button { position: absolute; top:880px; left: 100px; width: 200px; height:60px; }
+        .row1 { position: relative; top:5px;  height: 40px; background: blue;}
+        .row2 { position: relative; top:5px;  height:40px; background: green; }
+        .row3 { position: relative; top:5px;  height:40px; background: red;}
+        
+        
+        @media only screen and (max-device-width: 480px) {
+            #overlay { display: none !important; }
+            #overlayContent { display: none  !important; }
+            div.results img { left: 0px !important; width: 300px !important; height: 300px !important; }
+            #headerAd { display: none !important; }
+        }
+</style>
+<!-- jQuery/jQueryUI (hosted) -->
+        <script src="../js/jquery-1.8.3.min.js" language="javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <style>
+			body {
+				font-family:	'Segoe UI', Verdana, Arial, Helvetica, sans-serif;
+				font-size:		62.5%;
+			}
+        </style>
+		<script src="js/jquery.colorpicker.js"></script>
+		<link href="css/jquery.colorpicker.css" rel="stylesheet" type="text/css"/>
+		<script src="js/jquery.ui.colorpicker-nl.js"></script>
+<script type="text/javascript" src="../js/jquery.nivo.slider.js"></script>
+<script src="../js/twitter.js"></script>    
+<script src="../js/custom.js"></script>   
+<script>
+	//// Start Simple Sliders ////
+    $(function () {
+        setInterval("rotateDiv()", 10000);
+
+        $('.results').show();
+        // $('#overlay').fadeIn('fast');
+        // $('#overlayContent').fadeIn('fast');
+
+        $('.closeOverlay').click(function () {
+            $('#overlay').fadeOut('fast');
+            $('#overlayContent').fadeOut('fast');
+        });
+
+        // get selected li item
+        $("#selectImage li").on('click', function () {
+            $("#selectImage li").removeClass('selected');
+            $(this).addClass('selected');
+            var val = $(this).attr('id');
+            $('#selectedImage').val(val);
+            console.log("val: " + val);
+            // update preview image
+            $("#previewImage").css("background-image", "url(images/cards/" + val + ".png)");
+        });
+
+
+        $('#colorTitle').colorpicker({buttonImage:		'images/ui-colorpicker.png',
+            init: function (event, color) {
+                var fontTitleColor = $(this).val();
+                $("#previewTitle").css("color", "#" + fontTitleColor);
+            },
+            select: function (event, color) {
+                var fontTitleColor = $(this).val();
+                console.log("this val: " + fontTitleColor + " color: " + color.formatted);
+                $("#previewTitle").css("color", "#" + fontTitleColor);
+            },
+            close: function (event, color) {
+                var fontTitleColor = $(this).val();
+                $("#previewTitle").css("color", "#" + fontTitleColor);
+            }
+        });
+        $('#colorMessage').colorpicker({
+            init: function (event, color) {
+                var fontMessageColor = $(this).val();
+                $("#previewMessage").css("color", "#" + fontMessageColor);
+            },
+            select: function (event, color) {
+                var fontMessageColor = $(this).val();
+                $("#previewMessage").css("color", "#" + fontMessageColor);
+            },
+            close: function (event, color) {
+                var fontMessageColor = $(this).val();
+                $("#previewMessage").css("color", "#" + fontMessageColor);
+            }
+        });
+        $('#colorSignature').colorpicker({
+            init: function (event, color) {
+                var fontSignatureColor = $(this).val();
+                $("#previewSignature").css("color", "#" + fontSignatureColor);
+            },
+            select: function (event, color) {
+                var fontSignatureColor = $(this).val();
+                $("#previewSignature").css("color", "#" + fontSignatureColor);
+            },
+            close: function (event, color) {
+                var fontSignatureColor = $(this).val();
+                $("#previewSignature").css("color", "#" + fontSignatureColor);
+            }
+        });
+
+        // update preview image as each letter is typed into input box
+        $("#title").keyup(function () {
+            //get font size from select list
+            var fontTitleSize = $("#selectTitle").val();
+            $("#previewTitle").css("font-size", fontTitleSize + "px");
+            var value = $(this).val();
+            $("#previewTitle").text(value);
+
+        }).keyup();
+        $("#message").keyup(function () {
+            //get font size from select list
+            var fontMessageSize = $("#selectMessage").val();
+            $("#previewMessage").css("font-size", fontMessageSize + "px");
+            var value = $(this).val();
+            $("#previewMessage").text(value);
+        }).keyup();
+        $("#signature").keyup(function () {
+            //get font size from select list
+            var fontSignatureSize = $("#selectMessage").val();
+            $("#previewSignature").css("font-size", fontSignatureSize + "px");
+            var value = $(this).val();
+            $("#previewSignature").text(value);
+        }).keyup();
+
+        // update preview when the select item is changed
+        $('#selectTitle').change(function () {
+            var fontTitleSize = $(this).val();
+            $("#previewTitle").css("font-size", fontTitleSize + "px");
+        });
+        $('#selectMessage').change(function () {
+            var fontMessageSize = $(this).val();
+            $("#previewMessage").css("font-size", fontMessageSize + "px");
+        });
+        $('#selectSignature').change(function () {
+            var fontSignatureSize = $(this).val();
+            $("#previewSignature").css("font-size", fontSignatureSize + "px");
+        });
+
+    });
+
+    
+		
+		function rotateDiv() {
+		var currentDiv=$("#simpleslider div.current");
+		var nextDiv= currentDiv.next ();
+		if (nextDiv.length ==0)
+			nextDiv=$("#simpleslider div:first");
+		
+		currentDiv.removeClass('current').addClass('previous').fadeOut('2000');
+		nextDiv.fadeIn('3000').addClass('current',function() {
+			currentDiv.fadeOut('2000', function () {currentDiv.removeClass('previous');});
+		});
+	
+	}
+	//// End Simple Sliders //// 
+</script> 
+
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36566487-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+</script>
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=187314521336544";
+        fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));</script>
+<div id="header">
+    	<!-- Start navigation area -->
+        <div id="navigation">
+
+        	<div id="navigation_wrap">
+
+                <!-- Start contact info area -->
+                <div id="conteactinfo"><strong>Email:</strong>info@kezzapp.com</div>
+                <!-- End contact info area -->
+                <!-- Start navigation -->
+                <div id="navi">
+                
+                    <ul>               
+                        <li><a href="/" title="Home">Home</a></li>
+                        <li><a href="http://www.kezzapp.com/apps.html" title="Apps Page">Apps</a></li>
+                        <li><a href="http://www.kezzapp.com/privacy.html" title="Privacy Policy Page">Privacy</a></li>
+                        <li><a href="http://www.kezzapp.com/contact-us.html" title="Contact Kezzapp">Contact Us</a></li>        
+                    </ul>
+                
+                </div>
+                <!-- End navigation -->
+                
+			</div>
+        
+        </div>
+        <!-- End navigation area -->
+        <div class="clear"></div>
+        <!-- Start Social & Logo area -->
+        <div id="header_small">
+        	<!-- Start Social area -->
+        	<div class="social">
+            	
+                <ul>
+                <li><a href="http://www.facebook.com/pages/Kezzapp/281750735261261" target="_blank" class="social-facebook"></a></li>
+                <li><a href="https://twitter.com/Kezzapp11" target="_blank" class="social-twitter"></a></li>
+                </ul>
+                
+            </div>
+            <!-- End Socialarea -->
+            
+            <!-- Start Logo area -->
+            <div id="logo">
+              <a href="/" title="Kezzapp">Kezzapp</a>
+            </div>
+            <!-- End Logo area -->
+        
+        </div>
+        <!-- End Social & Logo area -->
+
+</div>
+
+<div id="main">
+    <!-- Start H1 Title -->
+    <div class="titlesnormal" id="headerAd">
+    
+    	<h1 align="center"></h1>
+        
+     
+    
+    </div>
+    <!-- End H1 Title -->
+    <!-- Start Main Body Wrap -->
+    <div id="main-wrap">
+        
+        <!-- Start Left Section -->
+        <div class="leftsection_cc">
+        
+        	<!-- Start Blog Post -->
+        	<div class="blogwrapstart">
+            
+            	<div class="blogtitle"><h3><a href="blog-post.html" title="Make Your Christmas Card">Make Your Christmas Card</a></h3></div>
+                
+                <div class="blogbody">
+                    <!-- Start Blog Text -->
+                    <div class="blogtext">
+                        <div id="previewCard">
+                            <div id="previewImage">
+                                <div id="previewTitle"></div>
+                                <div id="previewMessage"></div>
+                                <div id="previewSignature"></div>
+                            </div>
+                        </div>
+                    	<div class="makeCard">
+                            <form id="card" action="cardresult.php" method="post">
+                                <p>Select Image:<p>
+                                <ul id="selectImage">
+                                    <li id="image1"></li>
+                                    <li id="image2"></li>
+                                    <li id="image3"></li>
+                                    <li id="image4"></li>
+                                    <li id="image5"></li>
+                                    <li id="image6"></li>
+                                    <li id="image7"></li>
+                                    <li id="image8"></li>
+                                </ul>
+                                <div id="textOptions">
+                                    <div id="col1">
+                                        <div class="row1"><span>Card Title:</span> <input type="text" name="title" id="title"></div>
+                                        <div class="row2"><span>Message:</span> <input type="text" name="message" id="message"></div>
+                                        <div class="row3"><span>Signature:</span> <input type="text" name="signature" id="signature"></div>
+                                    </div>
+                                    <div id="col2">
+                                        <div class="row1" id="select1">
+                                            <select name="selectTitle" id="selectTitle">
+                                              <option value="12">12</option>
+                                              <option value="14">14</option>
+                                              <option value="16">16</option>
+                                              <option value="18">18</option>
+                                              <option value="20" selected="selected">20</option>
+                                              <option value="22">22</option>
+                                              <option value="24">24</option>
+                                              <option value="26">26</option>
+                                              <option value="28">28</option>
+                                            </select>
+                                        </div>
+                                        <div class="row2" id="select2">
+                                            <select name="selectMessage" id="selectMessage">
+                                              <option value="12">12</option>
+                                              <option value="14">14</option>
+                                              <option value="16">16</option>
+                                              <option value="18" selected="selected">18</option>
+                                              <option value="20">20</option>
+                                              <option value="22">22</option>
+                                              <option value="24">24</option>
+                                              <option value="26">26</option>
+                                              <option value="28">28</option>
+                                            </select>
+                                        </div>
+                                        <div class="row3" id="select3">
+                                            <select name="selectSignature" id="selectSignature">
+                                              <option value="12">12</option>
+                                              <option value="14">14</option>
+                                              <option value="16">16</option>
+                                              <option value="18">18</option>
+                                              <option value="20" selected="selected">20</option>
+                                              <option value="22">22</option>
+                                              <option value="24">24</option>
+                                              <option value="26">26</option>
+                                              <option value="28">28</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div id="col3">
+                                        <div class="row1"><input type="text" name="colorTitle" id="colorTitle" value="000000"></div>
+                                        <div class="row2"><input type="text" name="colorMessage" id="colorMessage" value="000000"></div>
+                                        <div class="row3"><input type="text" name="colorSignature" id="colorSignature" value="000000"></div>
+                                    </div>
+                                    <div id="button">
+                                        <input type="hidden" id="selectedImage" name="selectedImage" value="image1" />
+                                        <input type="submit" value="Make and Send Card" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    
+                    </div>
+                	<!-- End Blog Text -->
+                </div>
+                
+                
+            
+            </div>
+            <!-- End Blog Post -->
+
+        </div>
+        <!-- End Left Section -->
+        
+        <!-- Start Right Section -->
+        <div class="rightsection_cc">
+        
+        	<!-- Start Blog Widget -->
+            <div class="blogwidgetstart">
+            	<!-- Start Advertising Widget -->
+            	<div class="widgettitle"><h4>Sponsors</h4></div>
+                
+                <div class="widgetbody">
+                
+                	<div class="blogadvertising">
+                     
+                    </div>
+                
+              </div>
+              <!-- End Advertising Widget -->
+              
+            
+            </div>
+            <!-- End Blog Widget -->
+            
+        	<!-- Start Blog Widget -->
+            <div class="blogwidget">
+            	<!-- Start Categories Widget -->
+            	<div class="widgettitle"><h4></h4></div>
+                
+                <div class="widgetbody">
+                
+              </div>
+              <!-- End Categories Widget -->
+              
+            
+            </div>
+            <!-- End Blog Widget -->
+
+        </div>
+        <!-- End Right Section -->
+    
+    </div>
+    <!-- End Main Body Wrap -->
+
+</div>
+<!-- Start Footer -->
+<div id="footer">
+	<!-- Start Footer Top -->
+	<div id="footertop">
+	</div>
+	<!-- End Footer Top -->
+    <div class="clear"></div>
+    <!-- Start Footer Bottom -->
+    <div id="footerbottom">
+    
+    	<div class="footerwrap">
+        
+        	<!-- Start Copyright Div -->
+            <div id="copyright">&copy;2012 Kezzapp.com - All rights reserved! - Theme by 
+            
+            <!-- PLEASE SUPPORT US BY LEAVING THIS LINK -->
+            <a href="http://www.derby-web-design-agency.co.uk" title="Theme Provided By UBL Designs" rel="nofollow">UBL Designs</a></div>
+            <!-- PLEASE SUPPORT US BY LEAVING THIS LINK -->
+            
+            <!-- End Copyright Div -->
+
+            <!-- Start Social area -->
+            <div class="socialfooter">
+                
+                <ul>
+                    <li><a href="http://www.facebook.com/pages/Kezzapp/281750735261261" target="_blank" class="social-facebook"></a></li>
+                    <li><a href="https://twitter.com/Kezzapp11" target="_blank" class="social-twitter"></a></li>
+                </ul>
+                
+            </div>
+            <!-- End Socialarea -->
+        
+        </div>
+    
+    </div>
+    <!-- End Footer Bottom -->
+</div>
+<!-- End Footer -->
+<!-- Start Scroll To Top Div -->
+<div id="scrolltab"></div>
+<!-- End Scroll To Top Div -->
+<div id="overlay" style="display:none;"></div>
+
+<div id="overlayContent">
+    <div id="googleAd1"></div>
+    <div id="shareModal"><a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title;?>&amp;p[summary]=<?php echo $summary;?>&amp;p[url]=<?php echo $url; ?>&amp;&amp;p[images][0]=<?php echo $image;?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)"><img src="../images/fb_share.png" /></a></div>
+    <div id="fbLikes">
+    <div class="fb-like" data-href="http://www.facebook.com/pages/Which-Friend-Likes-You-The-Most/373369022751099" data-send="false" data-layout="box_count" data-width="450" data-show-faces="true"></div>
+    <div class="fb-like" data-href="http://www.facebook.com/pages/Kezzapp/281750735261261" data-send="false" data-layout="box_count" data-width="450" data-show-faces="true"></div>
+    </div>
+    <div id="skip">
+    <p><a href="#" onclick="$('#overlay').fadeOut('fast'); $('#overlayContent').fadeOut('fast'); return false;">See Results</a></p>
+    </div>
+    <a class="closeOverlay"></a>
+</div>
+</body>
+</html>

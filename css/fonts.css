@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'HelveticaLTStdRoman';
+    src: url('../fonts/helveticaltstd-roman-webfont.eot');
+    src: url('../fonts/helveticaltstd-roman-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaltstd-roman-webfont.woff') format('woff'),
+         url('../fonts/helveticaltstd-roman-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaltstd-roman-webfont.svg#HelveticaLTStdRoman') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BebasNeueRegular';
+    src: url('../fonts/BebasNeue-webfont.eot');
+    src: url('../fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/BebasNeue-webfont.woff') format('woff'),
+         url('../fonts/BebasNeue-webfont.ttf') format('truetype'),
+         url('../fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

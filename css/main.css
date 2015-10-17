@@ -1,0 +1,83 @@
+@charset "utf-8";
+/* CSS Document */
+
+/**********************************************/
+/************** Fonts Section *****************/
+/**********************************************/
+
+@import url("fonts.css");
+
+/**********************************************/
+/************* Main CSS Section ***************/
+/**********************************************/
+
+@import url("web-style.css");
+
+/**********************************************/
+/************ Transition Section **************/
+/**********************************************/
+
+@import url("transitions.css");
+
+/**********************************************/
+/************** Media Section *****************/
+/**********************************************/
+
+@import url("media.css");
+
+/**********************************************/
+/*********** PrettyPhoto Section **************/
+/**********************************************/
+
+@import url("prettyPhoto.css");
+
+#overlay{ background-color:Black; opacity:0.70; -moz-opacity: 0.70; filter: alpha(opacity=70); position:fixed; top:0px; bottom:0px; left:0px; right:0px; z-index:1000;}
+#overlayContent { display:none; top:250px; width:480px; height:270px; margin-left: auto; margin-right: auto; position: relative; background-color:#fff; color:#7F7F7F; padding:20px; border:2px solid #ccc;
+    -moz-border-radius: 5px; -webkit-border-radius:5px; -khtml-border-radius:5px; -moz-box-shadow: 0 1px 5px #333; -webkit-box-shadow: 0 1px 5px #333; z-index:1001; background-color: #e5e5e5;}
+a.closeOverlay{ position: absolute; top: -14px; left: 508px; height: 26px; width: 26px; background:transparent url(../images/close.png) repeat top left; cursor:pointer;}
+#googleAd1 { width: 468px; height: 60px; color: Blue; position: relative; top:10px; left:27px; }
+#fbLikes { position: absolute; height: 50px; width: 100px; top: 205px; left: 200px; }
+#skip { position: absolute; height: 30px; width: 100px; top: 267px; left: 212px; }
+#shareModal { position: absolute; top: 137px; left: 144px; width: 220px; height: 63px; }
+div.results img { position: relative; left: 69px !important; }
+#selectImage li { cursor: pointer; outline: 2px solid grey; width: 100px; list-style-type: none; height: 100px; margin-top: 4px; background-color: blue; position: relative; float: left; margin-right: 10px; }
+.jcarousel-list { height: 106px !important; }
+.selected { outline: 5px solid red; }
+/* preview image */
+#previewImage { position: relative; background-image: url(../images/cards/image1.png); width: 615px; height: 410px; font-family: Arial; }
+#previewTitle { position: absolute; left: 315px; top:25px; width: 273px; word-wrap: break-word;}
+#previewMessage { position: absolute; left: 315px; top:150px; width: 273px;  word-wrap: break-word;}
+#previewSignature { position: absolute; left: 315px; top:300px; width: 273px;  word-wrap: break-word;}
+/* image thumbs */
+#image1 { background-image: url(../images/cards/thumb1.png); background-repeat: no-repeat; width: 100px; height: 100px; }
+#image2 { background-image: url(../images/cards/thumb2.png); background-repeat: no-repeat; width: 100px; height: 100px; }
+#image3 { background-image: url(../images/cards/thumb3.png); background-repeat: no-repeat; width: 100px; height: 100px; }
+#image4 { background-image: url(../images/cards/thumb4.png); background-repeat: no-repeat; width: 100px; height: 100px; }
+#image5 { background-image: url(../images/cards/thumb5.png); background-repeat: no-repeat; width: 100px; height: 100px; }
+#image6 { background-image: url(../images/cards/thumb6.png); background-repeat: no-repeat; width: 100px; height: 100px; }
+#image7 { background-image: url(../images/cards/thumb7.png); background-repeat: no-repeat; width: 100px; height: 100px; }
+/* set up text options rows and columns */
+#colWide { float: left; width: 607px; height:144px; margin-top: 10px; margin-left: 2px; margin-bottom:10px; border: 2px solid #2C6817; border-radius: 4px; background-color: #E3F0DF; }
+#col1 { float: left; margin-left: 2px; margin-right:11px; width: 240px; height:144px; border: 2px solid #2C6817; border-radius: 4px; }
+#col2 { float: left; margin-right:11px; width: 50px; height:144px; border: 2px solid #2C6817; border-radius: 4px; }
+#col3 { float: left; margin-right:11px; width: 94px; height:144px; border: 2px solid #2C6817; border-radius: 4px; }
+#col3 input { width: 50px; vertical-align: top; margin-right: 5px;}
+#col3 div.row1, #col3 div.row2, #col3 div.row3 { margin-left: 5px; }
+#col4 { float: left; width: 178px; height:144px; border: 2px solid #2C6817; border-radius: 4px; }
+#col4 select { width: 168px; margin-left: 2px; }
+#button { position: absolute; top:806px; left: 200px; width: 220px; height:63px; }
+.buttonSelect { background: url(../images/card_select.png); width: 220px; height: 63px; cursor: pointer; border: none; }
+.rowName { position: relative; top:0px;  height: 20px; background-color: grey; color: white; font-family: helvetica; font-size: 14px; text-align: center; background-color: #2C6817; /*-moz-border-radius-topright: 4px; border-top-right-radius: 4px; -moz-border-radius-topleft: 4px; border-top-left-radius: 4px; */}
+.row1 { position: relative; top:5px;  height: 40px; }
+.row2 { position: relative; top:5px;  height:40px; }
+.row3 { position: relative; top:5px;  height:40px; }
+.ui-button { width: 25px !important; height: 25px !important;}
+.ui-button-text { padding: 0px !important; }
+
+@media only screen and (max-device-width: 640px) {
+    #overlay { display: none !important; }
+    #overlayContent { display: none  !important; }
+    div.results img { left: 0px !important; width: 300px !important; height: 300px !important; }
+    #headerAd { display: none !important; }
+    .rightsection_cc { display: none !important; }
+}

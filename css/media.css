@@ -1,0 +1,96 @@
+@media screen and (max-width: 1000px){
+#logo{margin-left:20px;}
+.social, .socialfooter{margin-right:20px;}
+#copyright{margin-left:20px;}
+#navi{padding-right:20px; width:550px;}
+#conteactinfo{padding-left:20px; width:340px; font-size:9pt;}
+}
+
+@media screen and (max-width: 950px){
+#header{background-position: left 20px;}
+#navi{width:100%; padding:0px;}
+#navi ul{margin:3px 32% 0px 0px; border-top: 1px dotted #CCC;}
+#navi ul li ul{border-top: 0px dotted #CCC; padding-top:10px;}
+#conteactinfo{width:100%; font-size:9pt; text-align:center;padding-bottom:5px;padding-left:0px;}
+#main{margin-top:10px;}
+.boxes-full{border-left:0px; border-right:0px; margin-left:0px; margin-right:0px;}
+}
+
+@media screen and (max-width: 870px){
+#navi ul{margin:3px 30% 0px 0px; border-top: 1px dotted #CCC;}
+}
+
+@media screen and (max-width: 800px){
+#navi ul{display:none;}
+#navi{text-align:center;}
+#navi select { display: inline-block;}
+.titles h1{font-size:14pt !important;}
+.featured-images{width:100%; text-align:center;}
+.featured-titles{font-size:16pt; width:100%; text-align:center; padding-bottom:10px;}
+#simpleslider{height:200px;}
+.socialfooter{width:100%; text-align:center !important;}
+.socialfooter ul{float:left; margin-left:275px;}
+.socialfooter ul li{border-top: 1px solid #d5d5d5;}
+#copyright{width:100%; text-align:center;padding-bottom:20px;margin-left:0px;}
+#footertop{padding-bottom:120px;}
+#portfolio-filter-choice{width:100%; padding: 0px 0px 20px 0px; text-align:center;}
+#portfolio-filter{width:100%; padding: 0px 0px 20px 0px; text-align:center;}
+.blogimage{width:60%;}
+.bloginfo{width:36%;}
+.blogpagination ul li a, .pagination ul li a:visited{padding:5px 3px;}
+.blogpagination ul li a:hover{padding:5px 3px;}
+}
+
+@media screen and (max-width: 700px){
+.socialfooter ul{margin-left:220px;}
+.commentuserreply{width:28%;}
+.commenttextreply{width:55%;}
+}
+
+@media screen and (max-width: 600px){
+.split2{width:100%; margin:10px 0px !important; padding:0px;}
+.element2{width:100%; margin:10px 0px !important; padding:0px;}
+.split3{width:100%; margin:10px 0px !important; padding:0px;}
+.element3{width:100%; margin:10px 0px !important; padding:0px;}
+.split23{width:100%; margin:10px 0px !important; padding:0px;}
+.split4{width:46%;padding:0% 2% 10px 2%;}
+.element{width:46%;padding:0% 2% 10px 2%;}
+.blogpagination ul li a:link.normal, .blogpagination ul li a:visited.normal{font-size:12pt;}
+.blogpagination ul li a:hover.normal{font-size:12pt;}
+.blogpagination ul li a:link.normalactive, .blogpagination ul li a:visited.normalactive{font-size:12pt;}
+.blogpagination ul li a:hover.normalactive{font-size:12pt;}
+.blogpagination ul li{margin-left:0px; margin-right:0px;}
+.socialfooter{display:none;}
+}
+
+@media screen and (max-width: 500px){
+.social{margin:0px; width:100%; text-align:center;}
+.social ul{margin:0px 20px 0px 0px;}
+#conteactinfo{font-size:8pt;}
+#logo{width:100%; margin:30px 0px 0px 0px; border-left:0px; border-right:0px;z-index:3000;}
+#header{height:auto;}
+#latest-tweets{width:100%;float:left;padding-right:0px;border-right:0px;margin-top:10px;}
+#useful_links{width:100%;float:left;padding:10px 0px 0px 0px;border-right:0px;border-left:0px;margin-top:20px;border-top:1px solid #cfcdcd;}
+#latest-testimonial{width:100%;float:left;padding:10px 0px 0px 0px;border-right:0px;border-left:0px;margin-top:20px;border-top:1px solid #cfcdcd;}
+#simpleslider{height:150px;};
+#footer{min-height:700px;}
+.leftsection{width:100%;padding:10px 0% 10px 0%;}
+.leftsectionalt{width:100%;padding:10px 0% 10px 0%;}
+.rightsection{width:100%;float:left;}
+.commentuser{width:28%;}
+.commenttext{width:63%;}
+#copyright{width:100%; text-align:center;padding-bottom:10px;margin-left:0px;}
+}
+
+@media screen and (max-width: 400px){
+.boxes-third{width:100%; border-left:0px; border-right:0px; margin-left:0px; margin-right:0px;}
+.boxes-first{margin-left:0px; margin-right:0px;}
+.boxes-last{margin-left:0px; margin-right:0px;}
+.featured-images{width:30%; text-align:left;}
+.featured-titles{font-size:20pt; width:65%; text-align:left; padding-bottom:0px;}
+#footertop{padding-bottom:140px;}
+.split4{width:100%; margin:10px 0px !important; padding:0px;}
+.element{width:100%; margin:10px 0px !important; padding:0px;}
+.blogimage{width:100%; margin-left:0px;border:0px;}
+.bloginfo{width:100%;}
+}

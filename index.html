@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Christmas Card Maker - Create Your Card</title>
+<meta name="description" content="Make a personalised Christmas Card to send to your friends and family." />
+<meta name="keywords" content="Christmas Card Maker" />
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+<meta name="apple-mobile-web-app-status-bar-style" content="grey" /> 
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" /> 
+
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/> 
+<link href="css/jquery.colorpicker.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="css/skins/tango/skin.css" />
+
+<script src="js/jquery-1.8.3.min.js" language="javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+<script src="js/jquery.colorpicker.js"></script>
+<script type="text/javascript" src="js/jquery.nivo.slider.js"></script>
+<script src="js/custom.js"></script>
+<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+
+<script>
+
+    $(function () {
+        $('#selectImage').jcarousel();
+
+        setInterval("rotateDiv()", 10000);
+
+        $('.results').show();
+
+        $('.closeOverlay').click(function () {
+            $('#overlay').fadeOut('fast');
+            $('#overlayContent').fadeOut('fast');
+        });
+
+        // get selected li item
+        $("#selectImage li").on('click', function () {
+            $("#selectImage li").removeClass('selected');
+            $(this).addClass('selected');
+            var val = $(this).attr('id');
+            $('#selectedImage').val(val);
+            // update preview image
+            $("#previewImage").css("background-image", "url(images/cards/" + val + ".png)");
+        });
+
+
+        $('#colorTitle').colorpicker({ buttonColorize: true,
+			showOn: 'both',
+            init: function (event, color) {
+                var fontTitleColor = $(this).val();
+                $("#previewTitle").css("color", "#" + fontTitleColor);
+            },
+            select: function (event, color) {
+                var fontTitleColor = $(this).val();
+             //   console.log("this val: " + fontTitleColor + " color: " + color.formatted);
+                $("#previewTitle").css("color", "#" + fontTitleColor);
+            },
+            close: function (event, color) {
+                var fontTitleColor = $(this).val();
+                $("#previewTitle").css("color", "#" + fontTitleColor);
+            }
+        });
+
+        $('#colorMessage').colorpicker({ buttonColorize: true,
+            showOn: 'both',
+            init: function (event, color) {
+                var fontMessageColor = $(this).val();
+                $("#previewMessage").css("color", "#" + fontMessageColor);
+            },
+            select: function (event, color) {
+                var fontMessageColor = $(this).val();
+                $("#previewMessage").css("color", "#" + fontMessageColor);
+            },
+            close: function (event, color) {
+                var fontMessageColor = $(this).val();
+                $("#previewMessage").css("color", "#" + fontMessageColor);
+            }
+        });
+
+        $('#colorSignature').colorpicker({ buttonColorize: true,
+            showOn: 'both',
+            init: function (event, color) {
+                var fontSignatureColor = $(this).val();
+                $("#previewSignature").css("color", "#" + fontSignatureColor);
+            },
+            select: function (event, color) {
+                var fontSignatureColor = $(this).val();
+                $("#previewSignature").css("color", "#" + fontSignatureColor);
+            },
+            close: function (event, color) {
+                var fontSignatureColor = $(this).val();
+                $("#previewSignature").css("color", "#" + fontSignatureColor);
+            }
+        });
+
+        // update preview image as each letter is typed into input box
+        $("#title").keyup(function () {
+            //get font size from select list
+            var fontTitleSize = $("#selectTitle").val();
+            $("#previewTitle").css("font-size", fontTitleSize + "px");
+            var value = $(this).val();
+            $("#previewTitle").text(value);
+
+        }).keyup();
+
+        $("#message").keyup(function () {
+            //get font size from select list
+            var fontMessageSize = $("#selectMessage").val();
+            $("#previewMessage").css("font-size", fontMessageSize + "px");
+            var value = $(this).val();
+            $("#previewMessage").text(value);
+        }).keyup();
+
+        $("#signature").keyup(function () {
+            //get font size from select list
+            var fontSignatureSize = $("#selectMessage").val();
+            $("#previewSignature").css("font-size", fontSignatureSize + "px");
+            var value = $(this).val();
+            $("#previewSignature").text(value);
+        }).keyup();
+
+        // update preview when the select item is changed
+        $('#selectTitle').change(function () {
+            var fontTitleSize = $(this).val();
+            $("#previewTitle").css("font-size", fontTitleSize + "px");
+        });
+
+        $('#selectMessage').change(function () {
+            var fontMessageSize = $(this).val();
+            $("#previewMessage").css("font-size", fontMessageSize + "px");
+        });
+
+        $('#selectSignature').change(function () {
+            var fontSignatureSize = $(this).val();
+            $("#previewSignature").css("font-size", fontSignatureSize + "px");
+        });
+
+        // update preview when the font is changed
+        $('#selectTitleFont').change(function () {
+            var titleFont = $(this).val();
+            $("#previewTitle").css("font-family", titleFont);
+        });
+        $('#selectMessageFont').change(function () {
+            var messageFont = $(this).val();
+            $("#previewMessage").css("font-family", messageFont);
+        });
+        $('#selectSignatureFont').change(function () {
+            var signatureFont = $(this).val();
+            $("#previewSignature").css("font-family", signatureFont);
+        });
+
+    });
+
+    
+		
+    function rotateDiv() {
+        var currentDiv=$("#simpleslider div.current");
+        var nextDiv= currentDiv.next ();
+
+        if (nextDiv.length ==0) {
+        	nextDiv=$("#simpleslider div:first");
+        }
+
+        currentDiv.removeClass('current').addClass('previous').fadeOut('2000');
+        nextDiv.fadeIn('3000').addClass('current',function() {
+        	currentDiv.fadeOut('2000', function () {currentDiv.removeClass('previous');});
+        });
+    }
+</script> 
+
+
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36566487-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+</head>
+
+<body>
+
+<div class="blogwrapstart">
+
+	<div class="blogtitle"><h3><a href="blog-post.html" title="Make Your Christmas Card">Make Your Christmas Card</a></h3></div>
+    
+    <div class="blogbody" style="height: 815px;">
+        <!-- Start Blog Text -->
+        <div class="blogtext">
+            <div id="previewCard">
+                <div id="previewImage">
+                    <div id="previewTitle"></div>
+                    <div id="previewMessage"></div>
+                    <div id="previewSignature"></div>
+                </div>
+            </div>
+        	<div class="makeCard">
+                <form id="card" action="cardresult.php" method="post">
+                    <div id="colWide">
+                        <div class="rowName">Select Image</div>
+                    <ul id="selectImage" class="jcarousel-skin-tango">
+                        <li id="image1"></li>
+                        <li id="image2"></li>
+                        <li id="image3"></li>
+                        <li id="image4"></li>
+                        <li id="image5"></li>
+                        <li id="image6"></li>
+                        <li id="image7"></li>
+                       <!-- <li id="image8"></li>-->
+                    </ul>
+                    </div>
+                    <div id="textOptions">
+                        <div id="col1">
+                            <div class="rowName"><span>Enter Text</span></div>
+                            <div class="row1"><span>Card Title:</span> <input type="text" name="title" id="title" maxlength="40"></div>
+                            <div class="row2"><span>Message:</span> <input type="text" name="message" id="message" maxlength="60"></div>
+                            <div class="row3"><span>Signature:</span> <input type="text" name="signature" id="signature" maxlength="28"></div>
+                        </div>
+                        <div id="col2">
+                            <div class="rowName"><span>Size</span></div>
+                            <div class="row1" id="select1">
+                                <select name="selectTitle" id="selectTitle">
+                                  <option value="20" selected="selected">20</option>
+                                  <option value="22">22</option>
+                                  <option value="24">24</option>
+                                  <option value="26">26</option>
+                                  <option value="28">28</option>
+                                  <option value="30">30</option>
+                                </select>
+                            </div>
+                            <div class="row2" id="select2">
+                                <select name="selectMessage" id="selectMessage">
+                                  <option value="20" selected="selected">20</option>
+                                  <option value="22">22</option>
+                                  <option value="24">24</option>
+                                  <option value="26">26</option>
+                                  <option value="28">28</option>
+                                  <option value="30">30</option>
+                                </select>
+                            </div>
+                            <div class="row3" id="select3">
+                                <select name="selectSignature" id="selectSignature">
+                                  <option value="20" selected="selected">20</option>
+                                  <option value="22">22</option>
+                                  <option value="24">24</option>
+                                  <option value="26">26</option>
+                                  <option value="28">28</option>
+                                  <option value="30">30</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="col3">
+                            <div class="rowName"><span>Color</span></div>
+                            <div class="row1"><input type="text" name="colorTitle" id="colorTitle" value="000000"></div>
+                            <div class="row2"><input type="text" name="colorMessage" id="colorMessage" value="000000"></div>
+                            <div class="row3"><input type="text" name="colorSignature" id="colorSignature" value="000000"></div>
+                        </div>
+                        <div id="col4">
+                            <div class="rowName"><span>Font</span></div>
+                             <div class="row1">
+                                <select name="selectTitleFont" id="selectTitleFont">
+                                  <option value="Arial" selected="selected">Arial</option>
+                                  <option value="Georgia">Georgia</option>
+                                  <option value="Helvetica">Helvetica</option>
+                                  <option value="Impact">Impact</option>
+                                  <option value="Tahoma">Tahoma</option>
+                                  <option value="Verdana">Verdana</option>               
+                                </select>
+                            </div>
+                            <div class="row2">
+                            <select name="selectMessageFont" id="selectMessageFont">
+                                  <option value="Arial" selected="selected">Arial</option>
+                                  <option value="Georgia">Georgia</option>
+                                  <option value="Helvetica">Helvetica</option>
+                                  <option value="Impact">Impact</option>
+                                  <option value="Tahoma">Tahoma</option>
+                                  <option value="Verdana">Verdana</option>  
+                                </select>
+                            </div>
+                            <div class="row3">
+                                <select name="selectSignatureFont" id="selectSignatureFont">
+                                  <option value="Arial" selected="selected">Arial</option>
+                                  <option value="Georgia">Georgia</option>
+                                  <option value="Helvetica">Helvetica</option>
+                                  <option value="Impact">Impact</option>
+                                  <option value="Tahoma">Tahoma</option>
+                                  <option value="Verdana">Verdana</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div id="button">
+                            <input type="hidden" id="selectedImage" name="selectedImage" value="image1" />
+                            <input type="submit" class="buttonSelect" value="" onclick="" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+        </div>
+    	<!-- End Blog Text -->
+    </div>              
+</div>
+<!-- End Blog Post -->
+</body>
+</html>
