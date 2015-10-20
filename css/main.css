@@ -57,7 +57,8 @@ div.results img { position: relative; left: 69px !important; }
 #image6 { background-image: url(../images/cards/thumb6.png); background-repeat: no-repeat; width: 100px; height: 100px; }
 #image7 { background-image: url(../images/cards/thumb7.png); background-repeat: no-repeat; width: 100px; height: 100px; }
 /* set up text options rows and columns */
-#colWide { float: left; width: 607px; height:144px; margin-top: 10px; margin-left: 2px; margin-bottom:10px; border: 2px solid #2C6817; border-radius: 4px; background-color: #E3F0DF; }
+#colWide { position: relative; float: left; width: 607px; height:144px; margin-top: 10px; margin-left: 2px; margin-bottom:10px; border: 2px solid #2C6817; border-radius: 4px; background-color: #E3F0DF; }
+#textOptions { position: relative; float: left; width: 100%; }
 #col1 { float: left; margin-left: 2px; margin-right:11px; width: 240px; height:144px; border: 2px solid #2C6817; border-radius: 4px; }
 #col2 { float: left; margin-right:11px; width: 50px; height:144px; border: 2px solid #2C6817; border-radius: 4px; }
 #col3 { float: left; margin-right:11px; width: 94px; height:144px; border: 2px solid #2C6817; border-radius: 4px; }
@@ -65,8 +66,8 @@ div.results img { position: relative; left: 69px !important; }
 #col3 div.row1, #col3 div.row2, #col3 div.row3 { margin-left: 5px; }
 #col4 { float: left; width: 178px; height:144px; border: 2px solid #2C6817; border-radius: 4px; }
 #col4 select { width: 168px; margin-left: 2px; }
-#button { position: absolute; top:806px; left: 200px; width: 220px; height:63px; }
-.buttonSelect { background: url(../images/card_select.png); width: 220px; height: 63px; cursor: pointer; border: none; }
+#button { position: relative; top:10px; left: 0px; width: 167px; height:44px; }
+.buttonSelect { background: url(../images/button.png); width: 167px; height: 44px; cursor: pointer; border: none; }
 .rowName { position: relative; top:0px;  height: 20px; background-color: grey; color: white; font-family: helvetica; font-size: 14px; text-align: center; background-color: #2C6817; /*-moz-border-radius-topright: 4px; border-top-right-radius: 4px; -moz-border-radius-topleft: 4px; border-top-left-radius: 4px; */}
 .row1 { position: relative; top:5px;  height: 40px; }
 .row2 { position: relative; top:5px;  height:40px; }
