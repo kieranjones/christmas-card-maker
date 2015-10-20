@@ -38,7 +38,7 @@
 	$signatureColor = '#' . $signatureColor;
 
 	# URL's from the web
-	$board = "http://kieranjones.com/christmas-card-maker/images/cards/" . $selectedImage . ".png";
+	$board = "http://sometestsite.com/christmas-card-maker/images/cards/" . $selectedImage . ".png";
 
 	# read files
 	$board_blob = file_get_contents($board);
@@ -157,7 +157,7 @@
 	$imgName = "images/usercards/test-image.png";
 	$b->writeImage($imgName);
 
-	header("Location: http://kieranjones.com/christmas-card-maker/viewcard.php");
+	header("Location: http://sometestsite.com/christmas-card-maker/viewcard.php");
  
 ?>
 </body>
