@@ -157,6 +157,7 @@
 	$imgName = "images/usercards/test-image.png";
 	$b->writeImage($imgName);
 
+	// Redirect to results page
 	header("Location: http://sometestsite.com/christmas-card-maker/viewcard.php");
  
 ?>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Christmas Card Maker</title>
+<title>Christmas Card Maker - View Result</title>
 <meta name="description" content="Make your own Christmas Card and share it with your Facebook friends and family." />
 <meta name="keywords" content="Christmas Card Maker" />
 <meta name="apple-mobile-web-app-capable" content="yes" /> 
@@ -14,12 +14,6 @@
 
 </head>
 <body>
-<?php
-
-	//header("Content-type: image/png");
-	//echo "<img src='http://kieranjones.com/christmas-card-maker/images/usercards/test-image.png' />";
- 
-?>
-<img src='http://kieranjones.com/christmas-card-maker/images/usercards/test-image.png' />
+	<img src='http://kieranjones.com/christmas-card-maker/images/usercards/test-image.png' />
 </body>
 </html>
