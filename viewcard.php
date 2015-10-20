@@ -11,7 +11,6 @@
 <link rel="shortcut icon" href="" /> 
 <link rel="bookmark icon" href="" /> 
 <link href="/css/main.css" rel="stylesheet" type="text/css">
-
 </head>
 <body>
 	<img src='http://kieranjones.com/christmas-card-maker/images/usercards/test-image.png' />

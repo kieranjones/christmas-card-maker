@@ -1,19 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Christmas Card Maker</title>
-<meta name="description" content="Make your own Christmas Card and share it with your Facebook friends and family." />
-<meta name="keywords" content="Christmas Card Maker" />
-<meta name="apple-mobile-web-app-capable" content="yes" /> 
-<meta name="apple-mobile-web-app-status-bar-style" content="grey" /> 
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" /> 
-<link rel="shortcut icon" href="" /> 
-<link rel="bookmark icon" href="" /> 
-<link href="/css/main.css" rel="stylesheet" type="text/css">
-
-</head>
-<body>
 <?php
 
 	$userIdUnique = mt_rand();
@@ -161,5 +145,3 @@
 	header("Location: http://sometestsite.com/christmas-card-maker/viewcard.php");
  
 ?>
-</body>
-</html>
